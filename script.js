@@ -1,4 +1,6 @@
-let index = 0
+/*Complète la fonction pour afficher les dossiers de troisième niveau (ex: les dossiers “Pico 8” et “Dataviz” sont des dossiers de troisième niveau car ils se trouvent dans un dossier “Projets collectifs, lui-même dans le dossier “Ada”). */
+
+let index = 0;
 const dossierPrincipal = {
     nom: 'Ada',
     contenu: [{
@@ -42,23 +44,53 @@ function afficherDossier(dossierPrincipal) {
     console.log(dossierPrincipal.nom)
 }
 
-function afficherDossierIteratif (dossierPrincipal) {
-    let array = dossierPrincipal.contenu;
+function afficherDossierIteratif(dossierPrincipal) {
+    let contenuDossierPrincipal = dossierPrincipal.contenu;
+    console.log(dossierPrincipal.nom);
 
-    for (let index = 0; index < array.length; index++) {
-        console.log(array[index].nom);
+    for (let index = 0; index < contenuDossierPrincipal.length; index++) {
+        let dossierSecondaire = contenuDossierPrincipal[index];
+        console.log(dossierSecondaire.nom);
+
+        if (dossierSecondaire.contenu !== undefined) {
+            let contenuDossierSecondaire = dossierSecondaire.contenu;
+
+            for (let index = 0; index < contenuDossierSecondaire.length; index++) {
+                let dossierTroisiemeNiveau = contenuDossierSecondaire[index];
+                console.log(dossierTroisiemeNiveau.nom);
+
+                if (dossierTroisiemeNiveau.contenu !== undefined) {
+                    let contenuDossierTroisiemeNiveau = dossierTroisiemeNiveau.contenu;
+                    for (let index = 0; index < contenuDossierTroisiemeNiveau.length; index++) {
+                        let dossierQuatriemeNiveau = contenuDossierTroisiemeNiveau[index];
+                        console.log(dossierQuatriemeNiveau.nom);
+                    }
+                }
+            }
+        }
     }
 }
 
-function afficherDossierRecursif (dossierPrincipal) {
-    let array = dossierPrincipal.contenu;
-    if (index < array.length) {
-        console.log(array[index].nom);
+function afficherDossierRecursif(dossierPrincipal) {
+    let contenuDossierPrincipal = dossierPrincipal.contenu;
+    
+    if (index < contenuDossierPrincipal.length) {
+        console.log(contenuDossierPrincipal[index].nom);
+        if (dossierPrincipal.contenu !== undefined) {
+            if (index < contenuDossierPrincipal.length) {
+                let dossierSecondaire = contenuDossierPrincipal[index];
+                afficherDossierRecursif(dossierSecondaire);
+                index++;
+            } else { console.log(dossierPrincipal.nom); }
+        }
         index++;
-        afficherDossierRecursif(dossierPrincipal);
+        afficherDossierRecursif(dossierPrincipal)
+
     }
+
 }
 
-afficherDossier(dossierPrincipal);
-afficherDossierIteratif(dossierPrincipal);
+
+// afficherDossier(dossierPrincipal);
+// afficherDossierIteratif(dossierPrincipal);
 afficherDossierRecursif(dossierPrincipal);
