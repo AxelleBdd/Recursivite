@@ -1,5 +1,3 @@
-/*Complète la fonction pour afficher les dossiers de troisième niveau (ex: les dossiers “Pico 8” et “Dataviz” sont des dossiers de troisième niveau car ils se trouvent dans un dossier “Projets collectifs, lui-même dans le dossier “Ada”). */
-
 let index = 0;
 const dossierPrincipal = {
     nom: 'Ada',
@@ -78,17 +76,13 @@ function afficherDossierRecursif(dossierPrincipal) {
     for (let index = 0; index < contenuDossierPrincipal.length; index++) {
         let dossierSecondaire = contenuDossierPrincipal[index];
         
-        
         if (dossierSecondaire.contenu !== undefined) {
             afficherDossierIteratif(dossierSecondaire);
-        } else {
-            console.log(dossierSecondaire.nom);
-        }
-
+        } else { console.log(dossierSecondaire.nom)}
     }
 
 }
 
-// afficherDossier(dossierPrincipal);
-// afficherDossierIteratif(dossierPrincipal);
+afficherDossier(dossierPrincipal);
+afficherDossierIteratif(dossierPrincipal);
 afficherDossierRecursif(dossierPrincipal);
