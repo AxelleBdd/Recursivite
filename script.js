@@ -73,23 +73,21 @@ function afficherDossierIteratif(dossierPrincipal) {
 
 function afficherDossierRecursif(dossierPrincipal) {
     let contenuDossierPrincipal = dossierPrincipal.contenu;
-    
-    if (index < contenuDossierPrincipal.length) {
-        console.log(contenuDossierPrincipal[index].nom);
-        if (dossierPrincipal.contenu !== undefined) {
-            if (index < contenuDossierPrincipal.length) {
-                let dossierSecondaire = contenuDossierPrincipal[index];
-                afficherDossierRecursif(dossierSecondaire);
-                index++;
-            } else { console.log(dossierPrincipal.nom); }
+    console.log(dossierPrincipal.nom);
+
+    for (let index = 0; index < contenuDossierPrincipal.length; index++) {
+        let dossierSecondaire = contenuDossierPrincipal[index];
+        
+        
+        if (dossierSecondaire.contenu !== undefined) {
+            afficherDossierIteratif(dossierSecondaire);
+        } else {
+            console.log(dossierSecondaire.nom);
         }
-        index++;
-        afficherDossierRecursif(dossierPrincipal)
 
     }
 
 }
-
 
 // afficherDossier(dossierPrincipal);
 // afficherDossierIteratif(dossierPrincipal);
